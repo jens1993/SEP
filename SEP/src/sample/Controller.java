@@ -12,17 +12,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.SingleSelectionModel;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.scene.control.*;
 import javafx.stage.WindowEvent;
-
 import java.io.IOException;
-
-import static java.awt.SystemColor.window;
-import static sample.Niveau.U9;
-import static sample.Niveau.values;
 
 
 public class Controller {
@@ -63,7 +56,6 @@ public class Controller {
 
     private static int index_niveau=100;
     private static int index_diszipin=100;
-    private static boolean binit=false;
     @FXML
     private void setNiveau_auswahl(ActionEvent event){
         //SingleSelectionModel niveau_auswahl = combo_niveau.getSelectionModel();
@@ -74,10 +66,13 @@ public class Controller {
         // System.out.println(test1.toString());
         //System.out.println(niveau_auswahl.toString());
         //System.out.println(a);
-        //combo_niveau.getsele
         //combo_niveau.setSelectionModel();
+        index_niveau = combo_niveau.getSelectionModel().getSelectedIndex();
     }
-
+    @FXML
+    private void setDisziplin_auswahl(ActionEvent event){
+        index_diszipin = combo_disziplin.getSelectionModel().getSelectedIndex();
+    }
 
     @FXML
     private void klassenSwitch(ActionEvent event) throws IOException, InterruptedException {
@@ -85,9 +80,8 @@ public class Controller {
         Parent root;
 
         //System.out.println(combo_niveau.getSelectionModel().getSelectedIndex());
-        index_niveau = combo_niveau.getSelectionModel().getSelectedIndex();
-        index_diszipin = combo_disziplin.getSelectionModel().getSelectedIndex();
-        binit=true;
+
+
        //niveau_auswahl = combo_niveau.getItems().get();
         //System.out.println(niveau_auswahl.toString());
         //System.out.println(combo_niveau.getValue());
@@ -113,6 +107,7 @@ public class Controller {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        wait(500);
         comboBoxFill();
     }
 
@@ -205,22 +200,20 @@ public class Controller {
     public ComboBox<Disziplin> combo_disziplin = new ComboBox<>();
     @FXML
     public void comboBoxFill() throws IOException{
-        combo_niveau.getItems().setAll(Niveau.values());
-        combo_disziplin.getItems().setAll(Disziplin.values());
-        if(!binit)
-        {
-            System.out.println("Keine Init");
-        }
-        else
-        {
-            System.out.println("true init");
+        try{
+            combo_niveau.getItems().setAll(Niveau.values());
+            combo_disziplin.getItems().setAll(Disziplin.values());
             combo_niveau.getSelectionModel().select(index_niveau);
             combo_disziplin.getSelectionModel().select(index_diszipin);
+        }
+        catch (Exception e){
+            e.printStackTrace();
         }
         //combo_niveau.getSelectionModel().select(0);
         //combo_niveau.setItems( FXCollections.observableArrayList((E[]) Niveau.values()));
         //combo_disziplin.setItems(Disziplin.Herreneinzel);
     }
+
 
 
 }

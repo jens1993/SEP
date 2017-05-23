@@ -68,34 +68,30 @@ public class Controller {
     private void setNiveau_auswahl(ActionEvent event){
         //SingleSelectionModel niveau_auswahl = combo_niveau.getSelectionModel();
         //a = combo_niveau.getSelectionModel().getSelectedIndex();
-
         //System.out.println("hallo -----"+niveau_auswahl.toString());
         //combo_niveau.getSelectionModel().select(niveau_auswahl);
         //test1=combo_niveau.getItems().get(a);
-        //
         // System.out.println(test1.toString());
         //System.out.println(niveau_auswahl.toString());
         //System.out.println(a);
-
         //combo_niveau.getsele
-
         //combo_niveau.setSelectionModel();
     }
 
 
     @FXML
-    private void klassenSwitch(ActionEvent event) throws IOException{
+    private void klassenSwitch(ActionEvent event) throws IOException, InterruptedException {
         Stage stage;
         Parent root;
 
-        System.out.println(combo_niveau.getSelectionModel().getSelectedIndex());
+        //System.out.println(combo_niveau.getSelectionModel().getSelectedIndex());
         index_niveau = combo_niveau.getSelectionModel().getSelectedIndex();
         index_diszipin = combo_disziplin.getSelectionModel().getSelectedIndex();
         binit=true;
        //niveau_auswahl = combo_niveau.getItems().get();
         //System.out.println(niveau_auswahl.toString());
-        System.out.println(combo_niveau.getValue());
-        combo_niveau.setValue(U9 );
+        //System.out.println(combo_niveau.getValue());
+        //combo_niveau.setValue(U9 );
         //System.out.println(niveau_auswahl.toString());
         if(radio_gruppeMitE.isSelected()) {
             stage = (Stage) radio_gruppeMitE.getScene().getWindow();
@@ -116,13 +112,8 @@ public class Controller {
         }
         Scene scene = new Scene(root);
         stage.setScene(scene);
-
-
-
         stage.show();
         comboBoxFill();
-
-
     }
 
     @FXML
@@ -209,8 +200,6 @@ public class Controller {
     @FXML
     public  ComboBox<Niveau> combo_niveau = new ComboBox<>();
 
-    ComboBox test = new ComboBox();
-
 
     @FXML
     public ComboBox<Disziplin> combo_disziplin = new ComboBox<>();
@@ -231,9 +220,6 @@ public class Controller {
         //combo_niveau.getSelectionModel().select(0);
         //combo_niveau.setItems( FXCollections.observableArrayList((E[]) Niveau.values()));
         //combo_disziplin.setItems(Disziplin.Herreneinzel);
-
-
-
     }
 
 

@@ -42,7 +42,7 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                             <children>
-                                <ComboBox fx:id="combo_disziplin" onShowing="#comboBoxFill" prefWidth="150.0" />
+                                <ComboBox fx:id="combo_disziplin" onAction="#comboBoxFill" onShowing="#comboBoxFill" prefWidth="150.0" />
                             </children>
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
@@ -53,6 +53,7 @@
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                             <children>
                                 <ComboBox fx:id="combo_niveau" editable="true" onAction="#setNiveau_auswahl" onShowing="#comboBoxFill" prefWidth="150.0" promptText="O19" />
+                        <Button mnemonicParsing="false" onAction="#comboBoxFill" text="Button" />
                             </children>
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">

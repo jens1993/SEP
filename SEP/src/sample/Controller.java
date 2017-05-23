@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
@@ -64,6 +65,8 @@ public class Controller {
     @FXML
     private RadioButton r_w;
 
+    @FXML
+    private ListView liste_spieler;
 
     @FXML
     private RadioButton radio_gruppe;
@@ -171,6 +174,7 @@ public void SpeicherSpieler(ActionEvent event)throws Exception
 
     try {
         Spieler.spielerHinzufuegen(vname,nname,geb,spid,ire,ird,irm,rm,rw);
+        liste_spieler.getItems().add(vname);
     } catch (Exception e) {
         e.printStackTrace();
     }

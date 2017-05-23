@@ -1,4 +1,7 @@
 package sample;
+import javafx.fxml.FXML;
+
+import javax.swing.text.html.ListView;
 import java.util.Date;
 import java.util.Timer;
 import java.util.Vector;
@@ -31,11 +34,13 @@ public class Spieler {
 
 	//agDatum muss noch auf Date geändert werden, Jens , int aRanglistenpunkte
 
+
 	public static void spielerHinzufuegen(String aVName, String aNName, String aGDatum, int aSpielerID, int rang_re, int rang_rd,int rang_rm, boolean rm, boolean rw) {
 
 
 		System.out.println("Klappt");
 		System.out.println("Vorname: "+aVName+""+" Nachname: "+aNName+""+" GD: "+aGDatum+""+" Spielerid: "+aSpielerID+""+" Mann: "+rm+" Frau"+rw+"Punkte"+rang_re+"-"+rang_rd+"-"+rang_rm);
+		//liste_spieler.
 	}
 
 	public void spielerLoeschen(int aSpielerID) {

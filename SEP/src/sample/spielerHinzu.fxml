@@ -113,9 +113,9 @@
             </content>
         </Tab>
         <Tab text="Spieler bearbeiten">
-            <content>
-                <ListView prefHeight="200.0" prefWidth="200.0" />
-            </content>
+         <content>
+            <ListView fx:id="liste_spieler" prefHeight="200.0" prefWidth="200.0" />
+         </content>
         </Tab>
     </tabs>
 </TabPane>

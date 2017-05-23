@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -43,6 +44,25 @@ public class Controller {
     //static Niveau niveau_auswahl;
     //static int a;
     //static ObservableList<Niveau> test1;
+
+    @FXML
+    private TextField t_vn;
+    @FXML
+    private TextField t_nn;
+    @FXML
+    private TextField t_geb;
+    @FXML
+    private TextField t_spid;
+    @FXML
+    private TextField t_re;
+    @FXML
+    private TextField t_rd;
+    @FXML
+    private TextField t_rm;
+    @FXML
+    private RadioButton r_m;
+    @FXML
+    private RadioButton r_w;
 
 
     @FXML
@@ -136,6 +156,25 @@ public class Controller {
         stage.show();
 
     }
+public void SpeicherSpieler(ActionEvent event)throws Exception
+{
+    String vname = t_vn.getText();
+    String nname = t_nn.getText();
+    String geb = t_geb.getText();
+    int spid = Integer.parseInt(t_spid.getText());
+    boolean rm = r_m.isSelected();
+    boolean rw = r_w.isSelected();
+    int ire=Integer.parseInt(t_re.getText());
+    int ird=Integer.parseInt(t_rd.getText());
+    int irm=Integer.parseInt(t_rm.getText());
+
+
+    try {
+        Spieler.spielerHinzufuegen(vname,nname,geb,spid,ire,ird,irm,rm,rw);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
 
     public void pressBtn_spieler(ActionEvent event) throws Exception {
         try {

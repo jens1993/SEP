@@ -15,7 +15,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Text?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="484.0" prefWidth="702.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="484.0" prefWidth="702.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
     <tabs>
         <Tab text="Spieler hinzufügen">
             <content>
@@ -50,14 +50,14 @@
                                 </Text>
                             </children>
                         </HBox>
-                        <TextField GridPane.columnIndex="1" />
-                        <TextField text=" " GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="t_vn" GridPane.columnIndex="1" />
+                        <TextField fx:id="t_nn" text=" " GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="t_geb" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="t_spid" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                             <children>
-                                <RadioButton mnemonicParsing="false" text="männlich" />
-                                <RadioButton mnemonicParsing="false" text="weiblich" />
+                                <RadioButton fx:id="r_m" mnemonicParsing="false" text="männlich" />
+                                <RadioButton fx:id="r_w" mnemonicParsing="false" text="weiblich" />
                             </children>
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
@@ -99,15 +99,15 @@
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                             <children>
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Einzel " />
-                                <TextField />
+                                <TextField fx:id="t_re" />
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Doppel " />
-                                <TextField />
+                                <TextField fx:id="t_rd" />
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mixed " />
-                                <TextField />
+                                <TextField fx:id="t_rm" />
                             </children>
                         </HBox>
-                        <Button mnemonicParsing="false" text="Spieler speichern" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                  <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Button mnemonicParsing="false" onAction="#SpeicherSpieler" text="Spieler speichern" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <ChoiceBox fx:id="combo_verein" onDragDetected="#SpeicherSpieler" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                     </children>
                 </GridPane>
             </content>

@@ -7,7 +7,7 @@ public class Spieler {
 	private int _iD;
 	private String _vName;
 	private String _nName;
-	private Date _gDatum;
+	private String _gDatum;
 	private int _spielerID;
 	private java.util.Vector<Spielklasse[]> _spielklasse;
 	private java.util.Vector<int[]> _ranglistenpunkte;
@@ -28,8 +28,14 @@ public class Spieler {
 	public Vector<Spiel> _unnamed_Spiel_ = new Vector<Spiel>();
 	public Verein _unnamed_Verein_;
 
-	public void spielerHinzufuegen(String aVName, String aNName, Date aGDatum, int aSpielerID, int aRanglistenpunkte) {
-		throw new UnsupportedOperationException();
+
+	//agDatum muss noch auf Date geändert werden, Jens , int aRanglistenpunkte
+
+	public static void spielerHinzufuegen(String aVName, String aNName, String aGDatum, int aSpielerID, int rang_re, int rang_rd,int rang_rm, boolean rm, boolean rw) {
+
+
+		System.out.println("Klappt");
+		System.out.println("Vorname: "+aVName+""+" Nachname: "+aNName+""+" GD: "+aGDatum+""+" Spielerid: "+aSpielerID+""+" Mann: "+rm+" Frau"+rw+"Punkte"+rang_re+"-"+rang_rd+"-"+rang_rm);
 	}
 
 	public void spielerLoeschen(int aSpielerID) {
@@ -42,5 +48,8 @@ public class Spieler {
 
 	public void meldeFormularimportieren() {
 		throw new UnsupportedOperationException();
+	}
+
+	public static void spielerHinzufueger() {
 	}
 }

@@ -1,10 +1,16 @@
 package sample;
 public class Spielsystem {
-	private String _name;
-	private int _anzahlTeilnehmer;
-	private int _anzahlRunden;
-	private int _anzahlSpiele;
-	private int _id;
-	private Zaehlweise _zaehlweise;
-	public Spielklasse _unnamed_Spielklasse_;
+	private String name;
+	private int anzahlTeilnehmer;
+	private int anzahlRunden;
+	private int anzahlSpiele;
+	private int id;
+	private Zaehlweise zaehlweise;
+	public int getAnzahlRunden() {
+		return anzahlRunden;
+	}
+
+	public void setAnzahlRunden(int anzahlRunden) {
+		this.anzahlRunden = anzahlRunden;
+	}
 }

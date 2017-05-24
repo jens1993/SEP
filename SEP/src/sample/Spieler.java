@@ -7,29 +7,32 @@ import java.util.Timer;
 import java.util.Vector;
 
 public class Spieler {
-	private int _iD;
-	private String _vName;
-	private String _nName;
-	private String _gDatum;
-	private int _spielerID;
-	private java.util.Vector<Spielklasse[]> _spielklasse;
-	private java.util.Vector<int[]> _ranglistenpunkte;
-	private char _geschlecht;
-	private Verein _verein;
-	private float _meldeGebuehren;
-	private int _anzahlSiege = 0;
-	private int _anzahlNiederlagen = 0;
-	private int _gewonneneSaetze = 0;
-	private int _verloreneSaetze = 0;
-	private int _erspieltePunkte = 0;
-	private int _zugelassenePunkte = 0;
-	private Timer _verfuegbar;
-	private int _mattenSpiele = 0;
-	private int _extSpielerID;
-	private int _aktuellesSpiel;
-	public Vector<Spielklasse> _unnamed_Spielklasse_ = new Vector<Spielklasse>();
-	public Vector<Spiel> _unnamed_Spiel_ = new Vector<Spiel>();
-	public Verein _unnamed_Verein_;
+	private int iD;
+	private String vName;
+
+
+
+	private String nName;
+	private String gDatum;
+	private int spielerID;
+	private java.util.Vector<Spielklasse[]> spielklasse;
+	private java.util.Vector<int[]> ranglistenpunkte;
+	private char geschlecht;
+	private Verein verein;
+	private float meldeGebuehren;
+	private int anzahlSiege = 0;
+	private int anzahlNiederlagen = 0;
+	private int gewonneneSaetze = 0;
+	private int verloreneSaetze = 0;
+	private int erspieltePunkte = 0;
+	private int zugelassenePunkte = 0;
+	private Timer verfuegbar;
+	private int mattenSpiele = 0;
+	private int extSpielerID;
+	private int aktuellesSpiel;
+	public Vector<Spielklasse> unnamed_Spielklasse_ = new Vector<Spielklasse>();
+	public Vector<Spiel> unnamed_Spiel_ = new Vector<Spiel>();
+	public Verein unnamed_Verein_;
 
 
 	//agDatum muss noch auf Date geändert werden, Jens , int aRanglistenpunkte
@@ -41,6 +44,12 @@ public class Spieler {
 		System.out.println("Klappt");
 		System.out.println("Vorname: "+aVName+""+" Nachname: "+aNName+""+" GD: "+aGDatum+""+" Spielerid: "+aSpielerID+""+" Mann: "+rm+" Frau"+rw+"Punkte"+rang_re+"-"+rang_rd+"-"+rang_rm);
 		//liste_spieler.
+	}
+	public String toString(){
+		return vName + " " + nName + ", " + gDatum;
+	}
+	public String getName() {
+		return vName + " " + nName;
 	}
 
 	public void spielerLoeschen(int aSpielerID) {

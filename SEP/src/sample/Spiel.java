@@ -3,17 +3,15 @@ package sample;
 import java.util.Date;
 
 public class Spiel {
-	private int _iD;
-	private int _spielID;
-	private Spieler[] _heim;
-	private Spieler[] _auswaerts;
-	private String[] _ergebnis;
-	private Date _aufrufZeit;
-	private Spieler _schiedsrichter;
-	private Feld _feld;
-	private Spielstatus _status;
-	public Spieler _unnamed_Spieler_;
-	public Feld _unnamed_Feld_;
+	private int iD;
+	private int spielID;
+	private Spieler[] heim;
+	private Spieler[] auswaerts;
+	private String[] ergebnis;
+	private Date aufrufZeit;
+	private Spieler schiedsrichter;
+	private Feld feld;
+	private Spielstatus status;
 
 	public void spielzettelDrucken(int aSpielID) {
 		throw new UnsupportedOperationException();
@@ -23,7 +21,15 @@ public class Spiel {
 		throw new UnsupportedOperationException();
 	}
 
-	public void spielErstellen(int aSpielID) {
-		throw new UnsupportedOperationException();
+	public void spielErstellen(String heim, String auswaerts) {
+		/*for (int i=0; i<heim.length && i<auswaerts.length; i++){
+			System.out.println(heim[i].getName());
+		}
+		*/
+		System.out.println(heim+" gegen "+auswaerts);
+
+	}
+	Spiel(int iD, String heim, String auswaerts){
+		System.out.println(heim+" gegen "+auswaerts);
 	}
 }

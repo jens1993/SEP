@@ -21,10 +21,13 @@ public class Main extends Application {
 
     public static void main(String[] args) {
 
-        //SQLConnection testverbindung = new SQLConnection();
-        //launch(args);
+        SQLConnection testverbindung = new SQLConnection();
+        //ResultSet r = testverbindung.executeSQL("SELECT * FROM TABELLE");
+        //testverbindung.PrintResult(r);
+        
+        launch(args);
         KO testsystem = new KO(65);
-        testsystem.rundenBerechnen();
+        //testsystem.rundenBerechnen();
 
     }
 }

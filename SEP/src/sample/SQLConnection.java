@@ -10,15 +10,15 @@ import java.sql.Statement;
 public class SQLConnection 
 {
 
-        private Connection con = null;
+        private static Connection con = null;
         private Statement stmt = null;
         private String dbHost = "localhost"; // Hostname
         private String dbPort = "3306";      // Port -- Standard: 3306
-        private String dbName = "test";   // Datenbankname
-        private String dbUser = "test";     // Datenbankuser
+        private String dbName = "turnierverwaltung";   // Datenbankname
+        private String dbUser = "root";     // Datenbankuser
         private String dbPass = "";      // Datenbankpasswort
-        private String db_erstellung = "create table if not exists test12345 (t1 varchar(20))";
-        private String db_nutzung = "USE Turnierverwaltung";
+        private String db_erstellung = "create table if not exists turnierverwaltung";
+        private String db_nutzung = "USE turnierverwaltung";
 
 
         public SQLConnection() //eventuell nich pub
@@ -31,7 +31,7 @@ public class SQLConnection
                 con = DriverManager.getConnection("jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbName + "?" + "user=" + dbUser + "&" + "password=" + dbPass); //con muss unbedingt irgendwo geschlossen werden
                 System.out.println("Erfolg!");
                 stmt = con.createStatement();
-                stmt.executeUpdate(db_erstellung);
+                //stmt.executeUpdate(db_erstellung);
 
             } catch (ClassNotFoundException e) 
             {
@@ -45,6 +45,7 @@ public class SQLConnection
             }
         }
 
+        //Funktioniert. Einfach select abfragen
         public ResultSet executeSQL(String sql)
         {
         	try
@@ -59,28 +60,12 @@ public class SQLConnection
         	catch (SQLException e)
         	{
         		e.printStackTrace();
+        		System.out.println("Klappt nicht");
         	}
         	return null;
         }
-        public int getSpielerID(String firstname, String lastname)
-        {
-        	String sql = "SELECT ID,vorname, nachname FROM Spieler";
-        	ResultSet r = executeSQL(sql);
-        	try {
-        		while(r.next())
-        		{
-        			if(firstname.equals(r.getString(1))&&lastname.equals(r.getString(2))) //Spalte 1 = firstname
-        			{
-        				return r.getInt(1);
-        			}
-        		}
-        		
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-        	return -1; //Überprüfung in main, ob nicht -1 return
-        }
+
+        //Ergebnis ausgeben (komplette Tabelle z.b.)
         public void PrintResult(ResultSet r) //als boolean machen, um zu prüfen ob erfolgreich (gilt für alle void sql klassen!) Booleans immer weiterleiten und ganz am ende ausgeben ob erfolgreich 
         {
         	try {
@@ -88,7 +73,7 @@ public class SQLConnection
 				{
 					int maxColoums = r.getMetaData().getColumnCount();
 					String print = "";
-					for(int i =0; i<maxColoums; i++) //eventuell bei 1 starten
+					for(int i =1; i<=maxColoums; i++) //eventuell bei 1 starten
 					{
 						print += " ";
 						print += r.getMetaData().getColumnName(i);
@@ -101,83 +86,92 @@ public class SQLConnection
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				System.out.println("Fehler");
 			}
         }
-        
-        public void insertSpieler (String firstname, String lastname)
+        //funktioniert
+        public int getSpielerID(String firstname, String lastname)
         {
-        	
-        	
-        	ResultSet r = executeSQL("SELECT * FROM TABELLE");
-        	int index = 0;
+        	String sql = "SELECT ID,VNAME, NNAME FROM spieler";
+        	ResultSet r = executeSQL(sql);
         	try {
-				if(r.last())
-				{
-					index = r.getInt(0);// ID vom letzten Objekt (Spalte 0)
-				}
-				/*Wenn if(r.last()) nicht funktioniert
-				 * 
-				 while(r.next())
-				 {
-				 	if(r.getInt(1)>index {
-				 	index=r.getInt(1);
-				 }
-				 
-				 */
+        		while(r.next())
+        		{
+        			if(firstname.equals(r.getString(2))&&lastname.equals(r.getString(3))) //Spalte 1 = firstname
+        			{
+        				return r.getInt(1);
+        			}
+        		}
+        		
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+        	return -1; //Überprüfung in main, ob nicht -1 return
+        }
+        public String getSpielerName(int id)
+        {
+        	String sql = "SELECT ID,VNAME, NNAME FROM spieler";
+        	ResultSet r = executeSQL(sql);
         	try {
-				r.close();
+        		while(r.next())
+        		{ 
+        			if(id==Integer.parseInt(r.getString(1))) //Spalte 1 = firstname
+        			{
+        				return r.getString(2)+" "+r.getString(3);
+        			}
+        		}
+        		
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
-    		String sql = "INSERT INTO TABELLENNAME VALUES (?,?,?,?)"; //für jede Spalte ein "?", prepared Statements zur Verhinderung von SQL Injection
-    		try {
-				PreparedStatement prep = con.prepareStatement(sql);
-				prep.setInt(0, index); //ID wird gesetzt
-				prep.setString(1, firstname);
-				prep.setString(2, lastname);
-				//...
-				prep.executeUpdate();
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-    		finally
-    		{
-    			prep.close();
-    		}
-        	
-        	
-        	//ResultSet r = executeSQL(sql);
+        	return " Nicht gefunden"; //Überprüfung in main, ob nicht -1 return
         }
-        
-        /*
-        public void selectAll()
+        public ResultSet getSpielerr(int id)
         {
+        	String sql = "SELECT ID,VNAME, NNAME, GDatum FROM spieler WHERE ID = "+id;
         	try
         	{
         		Statement smt = con.createStatement();
-        		String sql = "Select * FROM Tabelle";
+        		
         		ResultSet res = stmt.executeQuery(sql);
-        		while(res.next())
-        		{
-        			String id = res.getString(1);
-        			String name = res.getString(2);
-        		}
-        		res.close();
-        		stmt.close();
+
+        		return res;
         		
         	}
         	catch (SQLException e)
         	{
         		e.printStackTrace();
+        		System.out.println("Klappt nicht");
         	}
+        	return null;
         }
-        */
+        public Boolean insertSpieler(String vorname, String nachname)
+        {
+        	String sql = "INSERT INTO spieler("
+			        + "VName,"
+			        + "NName) "
+			        +  "VALUES(?,?)";
+        	try
+        	{
+        		PreparedStatement smt = con.prepareStatement(sql);
+        		smt.setString(1, vorname);
+        		smt.setString(2, nachname);
+        		smt.executeUpdate();
+        		smt.close();
+        		return true;
+        		
+        	}
+        	catch (SQLException e)
+        	{
+        		e.printStackTrace();
+        		System.out.println("Klappt nicht");
+        	}
+        	return false;
+        	
+        	
+        }
+
         
 }

@@ -20,14 +20,42 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-
-        SQLConnection testverbindung = new SQLConnection();
-        //ResultSet r = testverbindung.executeSQL("SELECT * FROM TABELLE");
-        //testverbindung.PrintResult(r);
-        
-        launch(args);
-        KO testsystem = new KO(65);
+    	
+    	 //testverbindung.PrintResult(r);
+        //launch(args);
+        //KO testsystem = new KO(65);
         //testsystem.rundenBerechnen();
+    	
+    	
+        SQLConnection testverbindung = new SQLConnection();
+        
+        System.out.println("------------------------------------------");System.out.println("------------------------------------------");
+        boolean hallo = testverbindung.insertSpieler("jens", "isttoll");
+        System.out.println("Einfügen = "+hallo);
+        
+        
+        System.out.println("------------------------------------------");System.out.println("------------------------------------------");
+        String name = testverbindung.getSpielerName(1);
+        System.out.println("Spielername: "+name);
 
+        
+        System.out.println("------------------------------------------");System.out.println("------------------------------------------");
+        int i = testverbindung.getSpielerID("jens", "isttoll");
+        if(i>0)
+        {
+        	System.out.println("Der Index lautet "+i);
+        }
+        else
+        {
+        	System.out.println("Spieler nicht gefunden");
+        }
+        
+        
+        System.out.println("------------------------------------------");System.out.println("------------------------------------------");
+        ResultSet j = testverbindung.getSpielerr(i);
+        testverbindung.PrintResult(j);
+        System.out.println("------------------------------------------");System.out.println("------------------------------------------");
+        ResultSet r = testverbindung.executeSQL("SELECT * FROM spieler");
+        testverbindung.PrintResult(r);
     }
 }

@@ -15,9 +15,9 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Text?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="484.0" prefWidth="702.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="484.0" prefWidth="702.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
     <tabs>
-        <Tab text="Spieler hinzufügen">
+        <Tab id="tab_spieler_hinzufuegen" text="Spieler hinzufügen">
             <content>
                 <GridPane prefHeight="435.0" prefWidth="718.0">
                     <columnConstraints>
@@ -112,7 +112,7 @@
                 </GridPane>
             </content>
         </Tab>
-        <Tab text="Spieler bearbeiten">
+        <Tab id="tab_spieler_bearbeiten" onSelectionChanged="#PrintTable" text="Spieler bearbeiten">
          <content>
             <ListView fx:id="liste_spieler" prefHeight="200.0" prefWidth="200.0" />
          </content>

@@ -40,7 +40,7 @@ public class Spieler {
 
 	public static void spielerHinzufuegen(String aVName, String aNName, String aGDatum, int aSpielerID, int rang_re, int rang_rd,int rang_rm, boolean rm, boolean rw) {
 
-
+		
 		System.out.println("Klappt");
 		System.out.println("Vorname: "+aVName+""+" Nachname: "+aNName+""+" GD: "+aGDatum+""+" Spielerid: "+aSpielerID+""+" Mann: "+rm+" Frau"+rw+"Punkte"+rang_re+"-"+rang_rd+"-"+rang_rm);
 		//liste_spieler.
@@ -65,5 +65,21 @@ public class Spieler {
 	}
 
 	public static void spielerHinzufueger() {
+	}
+	public static void spielerHinzufueg(String vname, String nname) {
+		// TODO Auto-generated method stub
+		System.out.println("Klappt");
+		System.out.println("Vorname: "+vname+""+" Nachname: "+nname);
+		SQLConnection testverbindung = new SQLConnection();
+		boolean hallo = testverbindung.insertSpieler(vname, nname);
+		if(hallo)
+        {
+			System.out.println("Einfügen erfolgreich!");
+        }
+		if(!hallo)
+        {
+			System.out.println("Einfügen nicht erfolgreich!");
+        }
+		//liste_spieler.
 	}
 }

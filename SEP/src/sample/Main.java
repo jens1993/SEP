@@ -22,11 +22,12 @@ public class Main extends Application {
     public static void main(String[] args) {
     	
     	 //testverbindung.PrintResult(r);
-        //launch(args);
+        launch(args);
+        //SQLConnection testverbindung = new SQLConnection();
         //KO testsystem = new KO(65);
         //testsystem.rundenBerechnen();
     	
-    	
+    	/*
         SQLConnection testverbindung = new SQLConnection();
         
         System.out.println("------------------------------------------");System.out.println("------------------------------------------");
@@ -57,5 +58,6 @@ public class Main extends Application {
         System.out.println("------------------------------------------");System.out.println("------------------------------------------");
         ResultSet r = testverbindung.executeSQL("SELECT * FROM spieler");
         testverbindung.PrintResult(r);
+        */
     }
 }

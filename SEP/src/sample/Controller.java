@@ -13,11 +13,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.swing.JList;
 
 
 public class Controller {
@@ -45,7 +50,7 @@ public class Controller {
     //static Niveau niveau_auswahl;
     //static int a;
     //static ObservableList<Niveau> test1;
-
+	
     @FXML
     private TextField t_vn;
     @FXML
@@ -66,7 +71,12 @@ public class Controller {
     private RadioButton r_w;
 
     @FXML
-    private ListView liste_spieler;
+    private TableColumn spielertab_vorname;
+    @FXML
+    public TableColumn spielertab_nachname;
+    @FXML
+    public ListView liste_spieler;
+    
 
     @FXML
     private RadioButton radio_gruppe;
@@ -159,22 +169,82 @@ public class Controller {
         stage.show();
 
     }
+    @FXML
+    public void PrintTable() //als boolean machen, um zu prüfen ob erfolgreich (gilt für alle void sql klassen!) Booleans immer weiterleiten und ganz am ende ausgeben ob erfolgreich 
+    {
+    	try {
+    		SQLConnection testverbindung = new SQLConnection();
+    		ResultSet res = testverbindung.executeSQL("SELECT * FROM spieler");
+    		if(!(res.next()))
+    		{
+    			liste_spieler.getItems().add("Keine Daten");
+    		}
+    		liste_spieler.getItems().clear();
+			while(res.next())
+			{
+					System.out.println(res.getString(2)+" "+res.getString(3));
+					
+					liste_spieler.getItems().add(res.getString(2)+" "+res.getString(3));
+					//Controller.liste_spieler.getItems().add(res.getString(2));
+					/*
+					print += " ";
+					print += r.getMetaData().getColumnName(i);
+					print += " = ";
+					print += r.getString(i);
+					*/
+				}
+				System.out.println();
+				
+			}
+		 catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("Fehler");
+		}
+    }/*
+    public String getSpielerName(int id)
+    {
+    	String sql = "SELECT ID,VNAME, NNAME FROM spieler";
+    	ResultSet r = executeSQL(sql);
+    	try {
+    		while(r.next())
+    		{ 
+    			if(id==Integer.parseInt(r.getString(1))) //Spalte 1 = firstname
+    			{
+    				return r.getString(2)+" "+r.getString(3);
+    			}
+    		}
+    		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return " Nicht gefunden"; //Überprüfung in main, ob nicht -1 return
+    }*/
+    
 public void SpeicherSpieler(ActionEvent event)throws Exception
 {
     String vname = t_vn.getText();
     String nname = t_nn.getText();
-    String geb = t_geb.getText();
+   
+	/*
     int spid = Integer.parseInt(t_spid.getText());
-    boolean rm = r_m.isSelected();
-    boolean rw = r_w.isSelected();
     int ire=Integer.parseInt(t_re.getText());
     int ird=Integer.parseInt(t_rd.getText());
     int irm=Integer.parseInt(t_rm.getText());
+     String geb = t_geb.getText();
 
+    boolean rm = r_m.isSelected();
+    boolean rw = r_w.isSelected();
+    */
 
     try {
-        Spieler.spielerHinzufuegen(vname,nname,geb,spid,ire,ird,irm,rm,rw);
-        liste_spieler.getItems().add(vname);
+    
+
+    	System.out.println("Speichern");
+        Spieler.spielerHinzufueg(vname,nname);
+       // Spieler.spielerHinzufuegen(vname,nname,geb,spid,ire,ird,irm,rm,rw);
+		//liste_spieler.getItems().add(vname+" "+nname);
     } catch (Exception e) {
         e.printStackTrace();
     }
@@ -192,6 +262,8 @@ public void SpeicherSpieler(ActionEvent event)throws Exception
             e.printStackTrace();
         }
     }
+
+    
     public void pressBtn_klassen(ActionEvent event) throws Exception {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("klasseHinzuGruppe.fxml"));
@@ -238,7 +310,22 @@ public void SpeicherSpieler(ActionEvent event)throws Exception
     @FXML
     public  ComboBox<Niveau> combo_niveau = new ComboBox<>();
 
-
+@FXML 
+public void SpielerTabFill()
+{
+	try
+	{
+		System.out.println("Test");
+		PrintTable();
+		//spielertab_vorname.getColumns()combo_disziplin
+	}
+	catch (Exception e)
+	{
+		 
+	}
+	
+}
+    
     @FXML
     public ComboBox<Disziplin> combo_disziplin = new ComboBox<>();
     @FXML

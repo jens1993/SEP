@@ -89,6 +89,7 @@ public class SQLConnection
 				System.out.println("Fehler");
 			}
         }
+
         //funktioniert
         public int getSpielerID(String firstname, String lastname)
         {

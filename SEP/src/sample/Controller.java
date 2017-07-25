@@ -1,11 +1,7 @@
 package sample;
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
 
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,14 +11,15 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
+import javafx.scene.control.Button;
+import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
+
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import javax.swing.JList;
 
 
 public class Controller {
@@ -87,6 +84,12 @@ public class Controller {
     @FXML
     private RadioButton radio_schweizer;
 
+    @FXML
+    private HBox hbox_test1;
+
+    @FXML
+    private Label label1;
+
     private static int index_niveau=100;
     private static int index_diszipin=100;
     @FXML
@@ -112,6 +115,9 @@ public class Controller {
         Stage stage;
         Parent root;
 
+        Button btn = new Button("Ein Knopf");
+        TextField tf = new TextField();
+
         //System.out.println(combo_niveau.getSelectionModel().getSelectedIndex());
 
 
@@ -121,27 +127,37 @@ public class Controller {
         //combo_niveau.setValue(U9 );
         //System.out.println(niveau_auswahl.toString());
         if(radio_gruppeMitE.isSelected()) {
-            stage = (Stage) radio_gruppeMitE.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("klasseHinzuGruppeMitKO.fxml"));
+            label1.setText("Gruppe mit Endrunde");
+            hbox_test1.getChildren().clear();
+            //stage = (Stage) radio_gruppeMitE.getScene().getWindow();
+            //root = FXMLLoader.load(getClass().getResource("klasseHinzuGruppeMitKO.fxml"));
 
         }
         else if(radio_ko.isSelected()){
-            stage=(Stage) radio_ko.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("klasseHinzuKO.fxml"));
+            label1.setText("K.O. System");
+            hbox_test1.getChildren().clear();
+            hbox_test1.getChildren().add(btn);
+            //stage=(Stage) radio_ko.getScene().getWindow();
+            //root = FXMLLoader.load(getClass().getResource("klasseHinzuKO.fxml"));
         }
         else if(radio_schweizer.isSelected()){
-            stage=(Stage) radio_schweizer.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("klasseHinzuSchweizer.fxml"));
+            label1.setText("Schweizer System");
+            hbox_test1.getChildren().clear();
+            hbox_test1.getChildren().add(tf);
+            //stage=(Stage) radio_schweizer.getScene().getWindow();
+            //root = FXMLLoader.load(getClass().getResource("klasseHinzuSchweizer.fxml"));
         }
         else{
-            stage=(Stage) radio_gruppe.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("klasseHinzuGruppe.fxml"));
+            label1.setText("Gruppe");
+            hbox_test1.getChildren().clear();
+            //stage=(Stage) radio_gruppe.getScene().getWindow();
+            //root = FXMLLoader.load(getClass().getResource("klasseHinzu.fxml"));
         }
-        Scene scene = new Scene(root);
+        /*Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
         wait(500);
-        comboBoxFill();
+        comboBoxFill();*/
     }
 
     @FXML
@@ -170,7 +186,7 @@ public class Controller {
 
     }
     @FXML
-    public void PrintTable() //als boolean machen, um zu prüfen ob erfolgreich (gilt für alle void sql klassen!) Booleans immer weiterleiten und ganz am ende ausgeben ob erfolgreich 
+    public void PrintTable() //als boolean machen, um zu prï¿½fen ob erfolgreich (gilt fï¿½r alle void sql klassen!) Booleans immer weiterleiten und ganz am ende ausgeben ob erfolgreich 
     {
     	try {
     		SQLConnection testverbindung = new SQLConnection();
@@ -219,7 +235,7 @@ public class Controller {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	return " Nicht gefunden"; //Überprüfung in main, ob nicht -1 return
+    	return " Nicht gefunden"; //ï¿½berprï¿½fung in main, ob nicht -1 return
     }*/
     
 public void SpeicherSpieler(ActionEvent event)throws Exception
@@ -266,7 +282,7 @@ public void SpeicherSpieler(ActionEvent event)throws Exception
     
     public void pressBtn_klassen(ActionEvent event) throws Exception {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("klasseHinzuGruppe.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("klasseHinzu.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
